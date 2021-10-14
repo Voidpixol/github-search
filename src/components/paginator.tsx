@@ -12,13 +12,13 @@ function Paginator({ currentPage, pages, switchPage }: Paginator) {
 
   let initialButtons = [...new Array(limit)].map((n, i) => {
       let id = i + 1
-      if(id == currentPage) return <div key={id} className="border px-4 py-2 rounded cursor-pointer bg-indigo-500 text-white"> {id}</div>
+      if(id == currentPage) return <div key={id} className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {id}</div>
       else return <div key={id} onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
   })
 
   let reversedButtons = [...new Array(5)].map((n, i) => {
       let id = currentPage - i;
-    if(id == currentPage) return <div className="border px-4 py-2 rounded cursor-pointer bg-indigo-500 text-white"> {id}</div>
+    if(id == currentPage) return <div className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {id}</div>
     else return <div onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
 }).reverse()
 
@@ -30,7 +30,7 @@ function Paginator({ currentPage, pages, switchPage }: Paginator) {
             <div onClick={() => switchPage(currentPage - 2)}className="border px-4 py-2 rounded cursor-pointer"> {currentPage - 2}</div>
             <div onClick={() => switchPage(currentPage - 1)}className="border px-4 py-2 rounded cursor-pointer"> {currentPage - 1}</div>
             </>
-            <div className="border px-4 py-2 rounded cursor-pointer bg-indigo-500 text-white"> {currentPage}</div>
+            <div className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {currentPage}</div>
             <>
             <div onClick={() => switchPage(currentPage + 1)}className="border px-4 py-2 rounded cursor-pointer"> {currentPage + 1}</div>
             <div onClick={() => switchPage(currentPage + 2)}className="border px-4 py-2 rounded cursor-pointer"> {currentPage + 2}</div>

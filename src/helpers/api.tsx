@@ -13,7 +13,7 @@ const getData = async (
         total: data.total_count,
         page,
         users: await Promise.all(
-          data.items.map((item: any) => getDetails(item.url))
+          data.items.map((item: any) => getDetails(item.url, item))
         ),
       };
     })
@@ -22,9 +22,13 @@ const getData = async (
   return users;
 };
 
-const getDetails = async (url: string) => {
+const getDetails = async (url: string, item: any) => {
   return await fetch(url)
     .then((res) => res.json())
+    .then((data) => {
+      
+      return {...item, ...data}
+    })
     .catch((err) => err);
 };
 
