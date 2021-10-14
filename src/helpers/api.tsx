@@ -3,8 +3,9 @@ const baseUrl = "https://api.github.com/search/";
 const getData = async (
   query: string,
   page: number = 1
+
 ): Promise<any> => {
-  const url = `${baseUrl}users?q=${query}&page=${page}&per_page=5`;
+  const url = `${baseUrl}users?q=${query}&page=${page}&per_page=5&type=Users`;
   const users: any = await fetch(url)
     .then((res) => res.json())
     .then(async (data) => {

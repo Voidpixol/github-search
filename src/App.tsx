@@ -10,7 +10,6 @@ function App() {
   const [state, setState] = useState({total: 0, users: [], currentPage: 1, per_page: 5, reachLimit: false})
   const [query, setQuery] = useState("")
   
-  
   const getUsers = async (value: string, page: number = 1)  => {
     const data = await getData(value, page)
     const reachLimit = data.users[0].message === undefined ? false : true
@@ -27,7 +26,7 @@ function App() {
     getUsers(query, n)
   }
 
-  
+
   const showContent = () => {
     return (
       <>
