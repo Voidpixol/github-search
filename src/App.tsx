@@ -51,6 +51,7 @@ function App() {
         information will be limited, for more information visit the{" "}
         <a
           className="text-blue-500 font-bold"
+          target="_blank"
           href="https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps"
         >
           Github API Docs
@@ -65,7 +66,7 @@ function App() {
           <div className="bg-white p-8 rounded"> 
             <strong>Github User Search 🔍</strong><br/>
             <p>Front-end exercise made for a coding interview using <strong className="text-gray-500">ReactJS, Typescript, Tailwinds, PostCSS, ViteCLI</strong> and
-            the <a className="text-blue-500 font-bold" href="https://docs.github.com/en/rest/reference/search">GitHub Search API.</a></p>
+            the <a className="text-blue-500 font-bold" href="https://docs.github.com/en/rest/reference/search" target="_blank">GitHub Search API.</a></p>
           </div>
           {state.reachLimit ? errorMessage() : ""}
           {showContent()}
