@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import logo from "../resources/GitHub-Mark-120px-plus.png";
+import logo from "../resources/github-mark.svg";
 import avatar from "../resources/avatar.png";
 
 function Nav({ handleSearch }: any) {
@@ -32,13 +32,13 @@ function Nav({ handleSearch }: any) {
           onKeyDown={handleKeyDown}
         />
         <div
-          className="px-4 py-2 bg-black text-gray-500 font-bold text-center cursor-pointer rounded-r "
+          className="px-4 py-2 bg-black text-white font-bold text-center cursor-pointer rounded-r "
           onClick={handleClick}
         >
           Search
         </div>
       </div>
-      <div className="flex items-center gap-2 text-gray-500">
+      <div className="flex items-center gap-2 ">
         <span>
           Singed in as{" "}
           <a
@@ -46,7 +46,7 @@ function Nav({ handleSearch }: any) {
             href="https://github.com/Voidpixol"
             target="_blank"
           >
-            John Soto
+            John A. Soto
           </a>
         </span>
         <div
