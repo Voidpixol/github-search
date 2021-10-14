@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import logo from "../resources/github-mark.svg";
+import logo from "../resources/GitHub-Mark.svg";
 import avatar from "../resources/avatar.png";
 
 function Nav({ handleSearch }: any) {
