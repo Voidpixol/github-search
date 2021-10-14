@@ -23,11 +23,11 @@ function User({avatar_url, login, name, bio, blog, location, followers, public_r
         </div>
   
         <div className="flex flex-col p-4 w-full">
-          <div className="font-bold text-blue-500">
+          <a href={html_url} target="_blank" className="font-bold text-blue-500">
             {name}
             {name != undefined ? <span className="text-gray-500 font-normal"> - {login}</span> : <span>{login}</span>}
             <span className="text-gray-500 font-normal"> - ⭐: {score}</span>
-          </div>
+          </a>
           <div>{bio}</div>
           <div className="text-sm text-gray-500">{location}</div>
           <a className="text-sm text-blue-500" href={blog}>
