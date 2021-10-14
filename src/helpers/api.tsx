@@ -5,7 +5,6 @@ const getData = async (
   page: number = 1
 ): Promise<any> => {
   const url = `${baseUrl}users?q=${query}&page=${page}&per_page=5`;
-
   const users: any = await fetch(url)
     .then((res) => res.json())
     .then(async (data) => {
@@ -29,7 +28,7 @@ const getDetails = async (url: string, item: any) => {
       
       return {...item, ...data}
     })
-    .catch((err) => err);
+    .catch((err) => console.log(err));
 };
 
 export { getData };

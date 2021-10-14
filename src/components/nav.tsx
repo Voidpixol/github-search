@@ -7,12 +7,14 @@ function Nav({ handleSearch }: any) {
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
-      handleSearch(e.target.value);
+      let query = e.target.value
+      if(query !== "") handleSearch(query);
     }
   };
 
   const handleClick = () => {
-    handleSearch(input?.current?.value);
+    let query = input?.current?.value
+    if(query !== "") handleSearch(query);
   };
 
   return (

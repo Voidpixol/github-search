@@ -27,10 +27,7 @@ function App() {
     getUsers(query, n)
   }
 
-  useEffect(() => {
-    console.log(query)
-  })
-
+  
   const showContent = () => {
     return (
       <>
