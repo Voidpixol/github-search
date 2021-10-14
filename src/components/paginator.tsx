@@ -18,8 +18,8 @@ function Paginator({ currentPage, pages, switchPage }: Paginator) {
 
   let reversedButtons = [...new Array(5)].map((n, i) => {
       let id = currentPage - i;
-    if(id == currentPage) return <div className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {id}</div>
-    else return <div onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
+    if(id == currentPage) return <div key={id} className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {id}</div>
+    else return <div key={id} onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
 }).reverse()
 
  
