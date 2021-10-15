@@ -12,8 +12,9 @@ function App() {
   
   const getUsers = async (value: string, page: number = 1)  => {
     const data = await getData(value, page)
-    const reachLimit = data.users[0].message === undefined ? false : true
-
+   
+    const reachLimit = data.users[0].message === undefined && data.users != undefined ? false : true
+    
     setState({...state, total: data.total, users: data.users, currentPage: data.page, reachLimit})
   }
   
@@ -25,16 +26,17 @@ function App() {
     setState({...state, currentPage: n})
     getUsers(query, n)
   }
-
-
   const showContent = () => {
+    //results limitations in the api
+    const maxResults = state.total > 1000 ? 1000 : state.total
+    const totalPages = Math.floor(maxResults / state.per_page)
     return (
       <>
         <Content {...state} />
         {state.total > state.per_page ? (
           <Paginator
             switchPage={handlePage}
-            pages={Math.floor(state.total / state.per_page)}
+            pages={totalPages}
             currentPage={state.currentPage}
           />
         ) : (
@@ -64,7 +66,7 @@ function App() {
         <div className="flex bg-gray-100 flex-grow flex-col py-8 lg:px-28 gap-2">
           <div className="bg-white p-8 rounded"> 
             <strong>Github User Search 🔍</strong><br/>
-            <p>Front-end exercise made for a coding interview using <strong className="text-gray-500">ReactJS, Typescript, Tailwinds, PostCSS, ViteCLI</strong> and
+            <p>Front-end exercise made for a coding interview using <strong className="text-gray-500">ReactJS, Typescript, Tailwind, PostCSS, ViteCLI</strong> and
             the <a className="text-blue-500 font-bold" href="https://docs.github.com/en/rest/reference/search" target="_blank">GitHub Search API.</a></p>
           </div>
           {state.reachLimit ? errorMessage() : ""}
