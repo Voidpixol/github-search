@@ -16,11 +16,11 @@ function Paginator({ currentPage, pages, switchPage }: Paginator) {
       else return <div key={id} onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
   })
 
-  let reversedButtons = [...new Array(5)].map((n, i) => {
-      let id = currentPage - i;
+  let endButtons = [...new Array(5)].map((n, i) => {
+      let id = (pages - 5 ) + (i + 1);
     if(id == currentPage) return <div key={id} className="border px-4 py-2 rounded cursor-pointer bg-black text-white"> {id}</div>
     else return <div key={id} onClick={() => switchPage(id)}className="border px-4 py-2 rounded cursor-pointer"> {id}</div>
-}).reverse()
+})
 
  
   let dynamicButtons = () => {
@@ -39,11 +39,12 @@ function Paginator({ currentPage, pages, switchPage }: Paginator) {
       )
   }
   const selectPagination = () => {
-    if(currentPage < 5) return initialButtons
-    if(currentPage >= 5 && currentPage < (pages - 5)) return dynamicButtons()
-    else return reversedButtons
+    if(currentPage < 5 ) return initialButtons
+    if(currentPage >= 5 && currentPage <= (pages - 5)) return dynamicButtons()
+    else return endButtons
     
   }
+  
   return (
     <div className="flex justify-center items-center gap-2">
       {currentPage === 1 ? (
