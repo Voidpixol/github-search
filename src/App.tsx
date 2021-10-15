@@ -7,17 +7,20 @@ import Paginator from './components/paginator'
 import Footer from './components/footer'
 function App() {
   
-  const [state, setState] = useState({total: 0, users: [], currentPage: 1, per_page: 5, reachLimit: false})
+  const [state, setState] = useState({total: 0, users: [], currentPage: 1, per_page: 5, reachLimit: false, message: ''})
   const [query, setQuery] = useState("")
   
   const getUsers = async (value: string, page: number = 1)  => {
     const data = await getData(value, page)
-   
-    const reachLimit = data.users[0].message === undefined && data.users != undefined ? false : true
-    
-    setState({...state, total: data.total, users: data.users, currentPage: data.page, reachLimit})
+    if(data.total >= 1)
+    {
+      const reachLimit = data.users[0].message === undefined ? false : true
+      setState({...state, total: data.total, users: data.users, currentPage: data.page, reachLimit, message: ""})
+    }
+    else setState({...state, message: `No results found 😔...`})
+
   }
-  
+  //useEffect(() => console.log(state))
   const handleSearch = (q: string) =>{
       setQuery(q)
       getUsers(q)
@@ -29,7 +32,7 @@ function App() {
   const showContent = () => {
     //results limitations in the api
     const maxResults = state.total > 1000 ? 1000 : state.total
-    const totalPages = Math.floor(maxResults / state.per_page)
+    const totalPages = Math.ceil(maxResults / state.per_page)
     return (
       <>
         <Content {...state} />
@@ -60,6 +63,13 @@ function App() {
       </div>
     );
   };
+  const message = () => {
+    return (
+      <div className="p-4 bg-white rounded">
+          {state.message}
+      </div>
+    );
+  };
   return (
     <div className="flex flex-col h-screen">
         <Nav handleSearch={handleSearch}/>
@@ -69,6 +79,7 @@ function App() {
             <p>Front-end exercise made for a coding interview using <strong className="text-gray-500">ReactJS, Typescript, Tailwind, PostCSS, ViteCLI</strong> and
             the <a className="text-blue-500 font-bold" href="https://docs.github.com/en/rest/reference/search" target="_blank">GitHub Search API.</a></p>
           </div>
+          {state.message != "" ? message() : ""}
           {state.reachLimit ? errorMessage() : ""}
           {showContent()}
         </div>
